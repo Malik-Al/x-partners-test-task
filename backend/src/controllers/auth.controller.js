@@ -1,4 +1,4 @@
-const { registerService, loginService } = require("../service/auth.service");
+const { registerService, loginService, updateAccountService } = require("../service/auth.service");
 
 class AuthController {
   async register(req, res, next) {
@@ -48,9 +48,18 @@ class AuthController {
 
   async updateAccount(req, res, next) {
     try {
+      const { id } = req.params;
+      const { name, password } = req.body;
+      const { img } = req.files;
+
+      const updateProfile = await updateAccountService(id, {name, password, img})
+      if(!updateProfile){
+        return res.status(404).json({
+          message: "Something went wrong when update Account",
+        });
+      }
       res.status(200).json({
-        message: "updateAccount",
-        data: [],
+        message: "success",
       });
     } catch (error) {
       console.log("updateAccount error", error);

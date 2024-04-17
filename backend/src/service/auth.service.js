@@ -24,7 +24,7 @@ class AuthService {
       }
       return true;
     } catch (error) {
-      console.log("error", error);
+      console.log("registerService error", error);
       throw error;
     }
   }
@@ -40,8 +40,21 @@ class AuthService {
 
       return user[0];
     } catch (error) {
-      console.log("error", error);
+      console.log("loginService error", error);
       throw error;
+    }
+  }
+
+  async updateAccountService(id, dto){
+    try {
+        const update = await UserSchema.updateOne({
+            _id: id,
+            $set: {name: dto.name}
+        })
+        console.log('update', update);
+    } catch (error) {
+        console.log("updateAccountService error", error);
+        throw error;
     }
   }
 }
