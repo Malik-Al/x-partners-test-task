@@ -3,6 +3,7 @@ const express = require("express");
 const fileUpload = require("express-fileupload");
 const config = require("./msdata/config.json");
 const router = require("./src/routes/index");
+const errorHandler = require('./src/middleware/error.handling')
 const path = require("path");
 const cors = require("cors");
 const PORT = config.port;
@@ -13,6 +14,7 @@ app.use(express.json());
 app.use(express.static(path.resolve(__dirname, "msdata/static")));
 app.use(fileUpload({}));
 app.use("/route", router);
+app.use(errorHandler)
 
 const start = async () => {
   try {
