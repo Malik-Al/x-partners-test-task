@@ -1,4 +1,4 @@
-const { registerService } = require("../service/auth.service");
+const { registerService, loginService } = require("../service/auth.service");
 
 class AuthController {
   async register(req, res, next) {
@@ -30,15 +30,22 @@ class AuthController {
 
   async login(req, res, next) {
     try {
+      const { email, password } = req.body;
+      const login = await loginService({email, password})
+      if(!login){
+        return res.status(404).json({
+          message: "Something went wrong when Authorization",
+        });
+      }
       res.status(200).json({
-        message: "login",
-        data: [],
+        message: "Authorization was successful",
       });
     } catch (error) {
       console.log("login error", error);
       next(error);
     }
   }
+
   async updateAccount(req, res, next) {
     try {
       res.status(200).json({
