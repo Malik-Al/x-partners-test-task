@@ -6,7 +6,11 @@ router.post(
     '/sing-up', 
     register,
 );
-router.post('/sing-in', login);
+router.post(
+    '/sing-in', 
+    login,
+);
+    
 router.post('/account', updateAccount);
 
 
