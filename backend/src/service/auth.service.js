@@ -71,7 +71,8 @@ class AuthService {
                             break;
 
                         case 'password':
-                            obj.password = dto.password;
+                            const hashPassword = await bcrypt.hash(dto.password, 5);
+                            obj.password = hashPassword;
                             break;
 
                         case 'img':
