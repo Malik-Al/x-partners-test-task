@@ -6,5 +6,15 @@
     "folder": {
         "name": "static",
         "path": "../../msdata"
+    },
+    "logger": {
+        "timeZone": {
+            "lang": "ky-KG",
+            "region": "Asia/Bishkek"
+        },
+        "writeLogPath": {
+            "error": "msdata/logger/error.log",
+            "combined": "msdata/logger/combined.log"
+        }
     }
 }
