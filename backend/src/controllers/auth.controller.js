@@ -50,9 +50,8 @@ class AuthController {
     try {
       const { id } = req.params;
       const { name, password } = req.body;
-      const { img } = req.files;
-
-      const updateProfile = await updateAccountService(id, {name, password, img})
+      const img = req.files === null ? "" : req.files.img;
+      const updateProfile = await updateAccountService(id, {name, password, img});
       if(!updateProfile){
         return res.status(404).json({
           message: "Something went wrong when update Account",

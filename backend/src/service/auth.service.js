@@ -46,12 +46,34 @@ class AuthService {
   }
 
   async updateAccountService(id, dto){
+    console.log(`[START] updateAccountService params id: ${id} dto: ${JSON.stringify(dto)}`);
     try {
+        let obj = {}
+        for (const key in dto) {
+            if(dto[key]){
+                switch (key) {
+                    case 'name':
+                        obj.name = dto.name
+                        break;
+                
+                    case 'password':
+                        obj.password = dto.password
+                        break;
+    
+                    case 'img':
+                        await FileService.createFile(dto.img);
+                        obj.img = dto.img.name
+                        break;    
+                    default:
+                        break;
+                }
+            }
+        }
         const update = await UserSchema.updateOne({
             _id: id,
-            $set: {name: dto.name}
+            $set: dto
         })
-        console.log('update', update);
+        return update
     } catch (error) {
         console.log("updateAccountService error", error);
         throw error;
