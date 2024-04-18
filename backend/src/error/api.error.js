@@ -6,7 +6,7 @@ class ApiError extends Error{
         this.errors = errors
     }
     static UserAlreadyExists(){
-        return new ApiError(409, 'Пользователь уже существует')
+        return new ApiError(409, 'The user already exists')
     }
 
     static UnauthorizedError(message, errors){

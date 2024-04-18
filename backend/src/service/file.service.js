@@ -6,7 +6,7 @@ class FileService {
         try {
             await file.mv(path.resolve(this.pathGenerateUrl(file.name)));
         } catch (error) {
-            console.error('Error createFile', error);
+            console.error('[ERROR] FileService createFile', error);
             throw error;
         }
     }
@@ -22,7 +22,7 @@ class FileService {
                 );
             return path.resolve(__dirname, conf.folder.path, conf.folder.name);
         } catch (error) {
-            console.error('Error pathGenerateUrl', error);
+            console.error('[ERROR] FileService pathGenerateUrl', error);
             throw error;
         }
     }
