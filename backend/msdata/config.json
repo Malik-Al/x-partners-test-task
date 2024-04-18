@@ -1,6 +1,20 @@
 {
     "port": 8055,
     "mongo": {
-        "url": "mongodb+srv://admin:admin123@cluster0.qsya6eu.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0"
+        "url": "mongodb+srv://admin:admin123@cluster0.qsya6eu.mongodb.net/x-partner-db?retryWrites=true&w=majority&appName=Cluster0"
+    },
+    "folder": {
+        "name": "static",
+        "path": "../../msdata"
+    },
+    "logger": {
+        "timeZone": {
+            "lang": "ky-KG",
+            "region": "Asia/Bishkek"
+        },
+        "writeLogPath": {
+            "error": "msdata/logger/error.log",
+            "combined": "msdata/logger/combined.log"
+        }
     }
 }

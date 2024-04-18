@@ -1,5 +1,5 @@
+const config = require("../../msdata/config.json");
 const mongoose = require("mongoose");
-const config = require("../../../msdata/config.json");
 const user = require("./user.schema.js")
 
 const db = {};
