@@ -16,6 +16,7 @@ export default function RegisterModal({ body, handleChange }) {
           variant="standard"
           name="name"
           type="text"
+          required
           value={body.name}
           onChange={handleChange}
         />
@@ -30,6 +31,7 @@ export default function RegisterModal({ body, handleChange }) {
             value={body.gender}
             label="Пол"
             name="gender"
+            required  
             onChange={handleChange}
           >
             <MenuItem value={gender[0]}>Муж</MenuItem>
@@ -44,6 +46,7 @@ export default function RegisterModal({ body, handleChange }) {
           variant="filled"
           type="date"
           name="date_birth"
+          required
           value={body.date_birth}
           onChange={handleChange}
         />
@@ -56,6 +59,7 @@ export default function RegisterModal({ body, handleChange }) {
           variant="standard"
           type="file"
           name="img"
+          required
           onChange={handleChange}
         />
       </Grid>

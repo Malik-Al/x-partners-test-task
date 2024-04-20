@@ -9,8 +9,7 @@ import { Grid } from "@mui/material";
 import RegisterModal from "./registerModal";
 import AuthBtn from "./AuthBtn";
 import config from "../config.json";
-import {useNavigate} from 'react-router-dom'
-
+import { useNavigate } from "react-router-dom";
 
 const style = {
   position: "absolute",
@@ -27,7 +26,7 @@ const style = {
 };
 
 export default function LoginModal({ isModal }) {
-  let navigate = useNavigate()
+  let navigate = useNavigate();
   const [auth, setAuth] = useState({
     register: "Регистрация",
     login: "Авторизация",
@@ -75,17 +74,23 @@ export default function LoginModal({ isModal }) {
       if (isAuth) {
         const url = config["api-register"];
         const response = await axios.post(url, body, headers);
-        if (response.status === 200) return navigate('/account') && setOpen(false);
+        if (response.status === 200)
+          return navigate("/account") && setOpen(false);
       } else {
         const url = config["api-login"];
         const response = await axios.post(url, body);
-        if (response.status === 200) return navigate('/account') && setOpen(false);
+        if (response.status === 200)
+          return navigate("/account") && setOpen(false);
       }
     } catch (error) {
       console.error("handleSubmit Ошибка:", error);
       setResError(error.response.data.message);
     }
   };
+
+  // axios.get('http://localhost:8055/route/people/6620176066f7f44272b80712')
+  // .then(res => console.log('res', res.data.data))
+  // .catch(err => console.log('err', err))
 
   return (
     <div>
@@ -111,6 +116,7 @@ export default function LoginModal({ isModal }) {
                   label="Email"
                   variant="standard"
                   name="email"
+                  required
                   value={body.email}
                   onChange={handleChange}
                 />
@@ -122,6 +128,7 @@ export default function LoginModal({ isModal }) {
                   variant="standard"
                   type="password"
                   name="password"
+                  required
                   value={body.password}
                   onChange={handleChange}
                 />
