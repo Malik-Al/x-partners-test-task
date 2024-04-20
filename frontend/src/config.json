@@ -1,0 +1,5 @@
+{
+    "base-url": "http://localhost:8055/",
+    "api-register": "http://localhost:8055/route/sing-up",
+    "api-login": "http://localhost:8055/route/sing-in"
+}
