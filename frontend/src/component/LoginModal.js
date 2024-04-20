@@ -9,6 +9,8 @@ import { Grid } from "@mui/material";
 import RegisterModal from "./registerModal";
 import AuthBtn from "./AuthBtn";
 import config from "../config.json";
+import {useNavigate} from 'react-router-dom'
+
 
 const style = {
   position: "absolute",
@@ -25,6 +27,7 @@ const style = {
 };
 
 export default function LoginModal({ isModal }) {
+  let navigate = useNavigate()
   const [auth, setAuth] = useState({
     register: "Регистрация",
     login: "Авторизация",
@@ -72,11 +75,11 @@ export default function LoginModal({ isModal }) {
       if (isAuth) {
         const url = config["api-register"];
         const response = await axios.post(url, body, headers);
-        if (response.status === 200) return setOpen(false);
+        if (response.status === 200) return navigate('/account') && setOpen(false);
       } else {
         const url = config["api-login"];
         const response = await axios.post(url, body);
-        if (response.status === 200) return setOpen(false);
+        if (response.status === 200) return navigate('/account') && setOpen(false);
       }
     } catch (error) {
       console.error("handleSubmit Ошибка:", error);
