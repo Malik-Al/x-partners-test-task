@@ -2,9 +2,9 @@ const path = require('path');
 const conf = require('../../msdata/config.json');
 
 class FileService {
-    async createFile(file) {
+    async createFile(file, fileName) {
         try {
-            await file.mv(path.resolve(this.pathGenerateUrl(file.name)));
+            await file.mv(path.resolve(this.pathGenerateUrl(fileName)));
         } catch (error) {
             console.error('[ERROR] FileService createFile', error);
             throw error;

@@ -9,10 +9,17 @@ const apiError = require('../error/api.error');
 
 class AuthController {
     async register(req, res, next) {
-        logger.info(`[START] AuthController register`);
+        const { name, email, password, date_birth, gender } = req.body;
+        const { img } = req.files;
+        console.log('req.files', req.files);
+        logger.info(`[START] AuthController register, params:
+        name: ${name}, 
+        email: ${email}, 
+        password: ${password}, 
+        date_birth: ${date_birth}, 
+        gender: ${gender} 
+        img: ${img.name}`);
         try {
-            const { name, email, password, date_birth, gender } = req.body;
-            const { img } = req.files;
             const user = await findUser(email);
             if (user) {
               logger.warn(`[WARN] AuthController register The user already exists`);

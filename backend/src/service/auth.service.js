@@ -3,6 +3,7 @@ const FileService = require('./file.service');
 const bcrypt = require('bcrypt');
 const apiError = require('../error/api.error');
 const logger = require('../../logger');
+const { v4: uuidv4 } = require('uuid');
 
 class AuthService {
     async registerService(dto) {
@@ -11,7 +12,9 @@ class AuthService {
         );
         try {
             const { name, email, password, date_birth, gender, img } = dto;
-            await FileService.createFile(img);
+            const fileExtension = img.name.split('.').pop();
+            const fileName = uuidv4() + '.' + fileExtension;
+            await FileService.createFile(img, fileName);
             const hashPassword = await bcrypt.hash(password, 5);
             const user = UserSchema({
                 name,
@@ -19,7 +22,7 @@ class AuthService {
                 password: hashPassword,
                 date_birth,
                 gender,
-                img: img.name,
+                img: fileName,
             });
 
             const create = await user.save();
@@ -71,12 +74,17 @@ class AuthService {
                             break;
 
                         case 'password':
-                            const hashPassword = await bcrypt.hash(dto.password, 5);
+                            const hashPassword = await bcrypt.hash(
+                                dto.password,
+                                5,
+                            );
                             obj.password = hashPassword;
                             break;
 
                         case 'img':
-                            await FileService.createFile(dto.img);
+                            const fileExtension = img.name.split('.').pop();
+                            const fileName = uuidv4() + '.' + fileExtension;
+                            await FileService.createFile(dto.img, fileName);
                             obj.img = dto.img.name;
                             break;
                         default:
