@@ -6,7 +6,7 @@ import Modal from "@mui/material/Modal";
 import TextField from "@mui/material/TextField";
 import axios from "axios";
 import { Grid } from "@mui/material";
-import RegisterModal from "./registerModal";
+import RegisterModal from "./RegisterModal";
 import AuthBtn from "./AuthBtn";
 import config from "../config.json";
 import { useNavigate } from "react-router-dom";
@@ -75,12 +75,12 @@ export default function LoginModal({ isModal }) {
         const url = config["api-register"];
         const response = await axios.post(url, body, headers);
         if (response.status === 200)
-          return navigate("/account") && setOpen(false);
+          return navigate("/people") && setOpen(false);
       } else {
         const url = config["api-login"];
         const response = await axios.post(url, body);
         if (response.status === 200)
-          return navigate("/account") && setOpen(false);
+          return navigate("/people") && setOpen(false);
       }
     } catch (error) {
       console.error("handleSubmit Ошибка:", error);
