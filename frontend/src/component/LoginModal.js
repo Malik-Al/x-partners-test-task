@@ -88,10 +88,6 @@ export default function LoginModal({ isModal }) {
     }
   };
 
-  // axios.get('http://localhost:8055/route/people/6620176066f7f44272b80712')
-  // .then(res => console.log('res', res.data.data))
-  // .catch(err => console.log('err', err))
-
   return (
     <div>
       <Modal

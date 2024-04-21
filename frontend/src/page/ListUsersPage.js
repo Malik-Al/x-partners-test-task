@@ -1,8 +1,7 @@
 import React, { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { getUser } from "../store/userStore";
-import { Grid } from "@mui/material";
-import ItemUser from "../component/ItemUser";
+import CardUser from "../component/Card/CardUser";
 import axios from "axios";
 import Navbar from "./Navbar";
 
@@ -26,11 +25,9 @@ export default function ListUsersPage() {
 
   return (
     <Navbar>
-      <div style={{ padding: 0, margin: 0 }}>
+      <div>
         {users.map((user) => (
-          <Grid container spacing={2} style={{ padding: 10, width: "50%" }}>
-            <ItemUser key={user._id} user={user} />
-          </Grid>
+            <CardUser key={user._id} user={user} />
         ))}
       </div>
     </Navbar>
