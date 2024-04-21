@@ -1,9 +1,11 @@
-import TextField from "@mui/material/TextField";
-import { Grid } from "@mui/material";
-import InputLabel from "@mui/material/InputLabel";
-import MenuItem from "@mui/material/MenuItem";
-import FormControl from "@mui/material/FormControl";
-import Select from "@mui/material/Select";
+import {
+  Grid,
+  TextField,
+  InputLabel,
+  MenuItem,
+  FormControl,
+  Select,
+} from "@mui/material";
 
 export default function RegisterModal({ body, handleChange }) {
   const gender = ["Муж", "Жен"];
@@ -31,7 +33,7 @@ export default function RegisterModal({ body, handleChange }) {
             value={body.gender}
             label="Пол"
             name="gender"
-            required  
+            required
             onChange={handleChange}
           >
             <MenuItem value={gender[0]}>Муж</MenuItem>

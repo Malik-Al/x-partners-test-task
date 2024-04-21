@@ -1,9 +1,6 @@
 import { useState } from "react";
-import { Box, Button, Grid } from "@mui/material";
-import { Modal, Typography } from "@mui/material";
+import { Box, Button, Grid, Modal, Typography, TextField } from "@mui/material";
 import { useNavigate } from "react-router-dom";
-// import { useSelector } from "react-redux";
-import TextField from "@mui/material/TextField";
 import axios from "axios";
 import config from "../config.json";
 import Password from "./Password";
@@ -42,14 +39,6 @@ export default function UpdateModal() {
     event.preventDefault();
   };
 
-  //   const users = useSelector((state) => state.users.users);
-  //   const user = users.filter((el) => el._id === localStorage.getItem("id"))[0];
-  //   console.log("user", user);
-
-  //   const handleOpen = () => {
-  //     setOpen(true);
-  //   };
-
   const handleChange = (e) => {
     setFormData({
       ...body,
@@ -57,7 +46,6 @@ export default function UpdateModal() {
         e.target.name === "img" ? e.target.files[0] : e.target.value,
     });
   };
-  console.log("body", body);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -69,7 +57,6 @@ export default function UpdateModal() {
       };
       const url = `${config.api.update}/${localStorage.getItem("id")}`;
       const response = await axios.put(url, body, headers);
-      console.log("response", response);
 
       if (response.status === 200) {
         return setIsUpdate(true);

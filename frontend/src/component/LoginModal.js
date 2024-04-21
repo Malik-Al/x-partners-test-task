@@ -1,16 +1,11 @@
 import { useState } from "react";
-import Box from "@mui/material/Box";
-import Button from "@mui/material/Button";
-import Typography from "@mui/material/Typography";
-import Modal from "@mui/material/Modal";
-import TextField from "@mui/material/TextField";
+import { useNavigate } from "react-router-dom";
 import axios from "axios";
-import { Grid } from "@mui/material";
+import { Grid, TextField, Modal, Typography, Button, Box } from "@mui/material";
 import RegisterModal from "./RegisterModal";
 import config from "../config.json";
 import AuthBtn from "./AuthBtn";
-import { useNavigate } from "react-router-dom";
-import Password from './Password'
+import Password from "./Password";
 
 const style = {
   position: "absolute",

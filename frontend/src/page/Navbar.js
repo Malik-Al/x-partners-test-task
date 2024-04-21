@@ -1,15 +1,16 @@
 import * as React from "react";
-import AppBar from "@mui/material/AppBar";
-import Box from "@mui/material/Box";
-import Toolbar from "@mui/material/Toolbar";
-import Typography from "@mui/material/Typography";
-import Button from "@mui/material/Button";
-import IconButton from "@mui/material/IconButton";
+import {
+  AppBar,
+  Box,
+  Toolbar,
+  Typography,
+  Button,
+  IconButton,
+} from "@mui/material";
 import { useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { clearState } from "../store/userStore";
 import { CardHeader, Avatar } from "@mui/material";
-// import MenuIcon from "@mui/icons-material/Menu";
 
 export default function Navbar({ children }) {
   let navigate = useNavigate();
@@ -29,13 +30,8 @@ export default function Navbar({ children }) {
             color="success"
             aria-label="menu"
             sx={{ mr: 2 }}
-          >
-            {/* <MenuIcon /> */}
-          </IconButton>
-            <CardHeader
-                style={{padding: 0}}
-                avatar={<Avatar />}
-            />
+          ></IconButton>
+          <CardHeader style={{ padding: 0 }} avatar={<Avatar />} />
           <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
             <Button color="inherit" onClick={(e) => navigate("/account")}>
               Профиль
