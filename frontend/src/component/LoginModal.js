@@ -10,6 +10,7 @@ import RegisterModal from "./RegisterModal";
 import config from "../config.json";
 import AuthBtn from "./AuthBtn";
 import { useNavigate } from "react-router-dom";
+import Password from './Password'
 
 const style = {
   position: "absolute",
@@ -27,6 +28,7 @@ const style = {
 
 export default function LoginModal({ isModal }) {
   let navigate = useNavigate();
+  const [showPassword, setShowPassword] = useState(false);
   const [auth, setAuth] = useState({
     register: "Регистрация",
     login: "Авторизация",
@@ -42,6 +44,14 @@ export default function LoginModal({ isModal }) {
     date_birth: "",
     img: null,
   });
+
+  const handleClickShowPassword = () => {
+    setShowPassword(!showPassword);
+  };
+
+  const handleMouseDownPassword = (event) => {
+    event.preventDefault();
+  };
 
   const changeAuth = (e) => {
     e.preventDefault();
@@ -79,6 +89,7 @@ export default function LoginModal({ isModal }) {
         return navigate("/people") && setOpen(false);
       } else {
         const url = config["api-login"];
+        console.log("body", body);
         const response = await axios.post(url, body);
         if (response.status === 200)
           localStorage.setItem("id", response.data.data.id);
@@ -119,18 +130,14 @@ export default function LoginModal({ isModal }) {
                   onChange={handleChange}
                 />
               </Grid>
-              <Grid item xs={12}>
-                <TextField
-                  fullWidth
-                  label="Пароль"
-                  variant="standard"
-                  type="password"
-                  name="password"
-                  required
-                  value={body.password}
-                  onChange={handleChange}
-                />
-              </Grid>
+
+              <Password
+                password={body.password}
+                handleChange={handleChange}
+                showPassword={showPassword}
+                handleClickShowPassword={handleClickShowPassword}
+                handleMouseDownPassword={handleMouseDownPassword}
+              />
 
               {isAuth && (
                 <RegisterModal body={body} handleChange={handleChange} />

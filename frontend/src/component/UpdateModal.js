@@ -1,12 +1,12 @@
 import { useState } from "react";
-import { Box, Button } from "@mui/material";
+import { Box, Button, Grid } from "@mui/material";
 import { Modal, Typography } from "@mui/material";
 import { useNavigate } from "react-router-dom";
 // import { useSelector } from "react-redux";
 import TextField from "@mui/material/TextField";
-import { Grid } from "@mui/material";
 import axios from "axios";
 import config from "../config.json";
+import Password from "./Password";
 
 const style = {
   position: "absolute",
@@ -24,6 +24,7 @@ const style = {
 
 export default function UpdateModal() {
   let navigate = useNavigate();
+  const [showPassword, setShowPassword] = useState(false);
   const [isUpdate, setIsUpdate] = useState(false);
   const [open, setOpen] = useState(true);
   const [resError, setResError] = useState("");
@@ -32,6 +33,15 @@ export default function UpdateModal() {
     img: null,
     password: "",
   });
+
+  const handleClickShowPassword = () => {
+    setShowPassword(!showPassword);
+  };
+
+  const handleMouseDownPassword = (event) => {
+    event.preventDefault();
+  };
+
   //   const users = useSelector((state) => state.users.users);
   //   const user = users.filter((el) => el._id === localStorage.getItem("id"))[0];
   //   console.log("user", user);
@@ -47,6 +57,7 @@ export default function UpdateModal() {
         e.target.name === "img" ? e.target.files[0] : e.target.value,
     });
   };
+  console.log("body", body);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -58,6 +69,8 @@ export default function UpdateModal() {
       };
       const url = `${config["api-update"]}/${localStorage.getItem("id")}`;
       const response = await axios.put(url, body, headers);
+      console.log("response", response);
+
       if (response.status === 200) {
         return setIsUpdate(true);
       }
@@ -80,7 +93,7 @@ export default function UpdateModal() {
         aria-describedby="parent-modal-description"
       >
         <Box sx={style}>
-          <form onSubmit={handleSubmit}>
+          <form onSubmit>
             <Grid container spacing={2} justifyContent="center">
               <Grid item xs={12}>
                 <Typography variant="h5" align="center">
@@ -103,17 +116,13 @@ export default function UpdateModal() {
                 />
               </Grid>
 
-              <Grid item xs={12}>
-                <TextField
-                  fullWidth
-                  label="Пароль"
-                  variant="standard"
-                  type="password"
-                  name="password"
-                  value={body.password}
-                  onChange={handleChange}
-                />
-              </Grid>
+              <Password
+                password={body.password}
+                showPassword={showPassword}
+                handleChange={handleChange}
+                handleClickShowPassword={handleClickShowPassword}
+                handleMouseDownPassword={handleMouseDownPassword}
+              />
 
               <Grid item xs={12}>
                 <TextField
@@ -141,7 +150,7 @@ export default function UpdateModal() {
                   variant="contained"
                   color="primary"
                   type="submit"
-                  onClick={(e) => navigate("/people")}
+                  onClick={(e) => handleSubmit(e) && navigate("/people")}
                 >
                   Отправить
                 </Button>

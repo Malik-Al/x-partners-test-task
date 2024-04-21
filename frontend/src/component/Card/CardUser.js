@@ -16,11 +16,13 @@ export default function CardUser({ user }) {
     <div class="user-card">
       <CardHeader
         avatar={<Avatar src={`${config["base-url"] + img}`} />}
-        title={name}
       />
       <CardContent>
+      <Typography variant="body2" color="textSecondary" component="p">
+          <strong>Имя: </strong>{name}
+        </Typography>
         <Typography variant="body2" color="textSecondary" component="p">
-          Дата рожд: {filterDate(date_birth)}
+          <strong>Дата рожд: </strong>{filterDate(date_birth)}
         </Typography>
       </CardContent>
     </div>
