@@ -131,7 +131,7 @@ export default function UpdateModal() {
                   style={{ marginRight: 198 }}
                   onClick={handleClose}
                 >
-                  Close
+                  Закрыть
                 </Button>
                 <Button
                   variant="contained"
