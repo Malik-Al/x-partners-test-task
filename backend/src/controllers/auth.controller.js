@@ -81,7 +81,7 @@ class AuthController {
         try {
             const { id } = req.params;
             const { name, password } = req.body;
-            const img = req.files === null ? '' : req.files.img;
+            const img = req.files !== null ? req.files.img: "";
             const updateProfile = await updateAccountService(id, {
                 name,
                 password,
@@ -96,6 +96,7 @@ class AuthController {
             logger.info('[SUCCESS] AuthController updateAccount');
             res.status(200).json({
                 message: 'success',
+                data: updateProfile
             });
         } catch (error) {
             console.error('[ERROR] AuthController updateAccount error', error);

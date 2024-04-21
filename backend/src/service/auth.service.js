@@ -31,7 +31,7 @@ class AuthService {
             }
             return {
                 id: create._id,
-                status: true
+                status: true,
             };
         } catch (error) {
             console.error('[ERROR] AuthService registerService error', error);
@@ -85,21 +85,24 @@ class AuthService {
                             break;
 
                         case 'img':
-                            const fileExtension = img.name.split('.').pop();
+                            const fileExtension = dto.img.name.split('.').pop();
                             const fileName = uuidv4() + '.' + fileExtension;
                             await FileService.createFile(dto.img, fileName);
-                            obj.img = dto.img.name;
+                            obj.img = fileName;
                             break;
                         default:
                             break;
                     }
                 }
             }
-            const update = await UserSchema.updateOne({
-                _id: id,
-                $set: dto,
-            });
-            return update;
+
+            const options = { new: true };
+            const updatedDoc = await UserSchema.findByIdAndUpdate(
+                id,
+                obj,
+                options,
+            ).select('-__v');
+            return updatedDoc;
         } catch (error) {
             console.log(
                 '[ERROR] AuthService updateAccountService error',

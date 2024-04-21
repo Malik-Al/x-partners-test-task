@@ -8,7 +8,6 @@ const {
 
 router.post("/sing-up", register);
 router.post("/sing-in", login);
-router.post("/account/:id", updateAccount);
-router.post("/account", updateAccount);
+router.put("/account/:id", updateAccount);
 
 module.exports = router;
