@@ -7,8 +7,8 @@ import TextField from "@mui/material/TextField";
 import axios from "axios";
 import { Grid } from "@mui/material";
 import RegisterModal from "./RegisterModal";
-import AuthBtn from "./AuthBtn";
 import config from "../config.json";
+import AuthBtn from "./AuthBtn";
 import { useNavigate } from "react-router-dom";
 
 const style = {

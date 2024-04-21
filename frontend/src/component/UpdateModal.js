@@ -2,10 +2,11 @@ import { useState } from "react";
 import { Box, Button } from "@mui/material";
 import { Modal, Typography } from "@mui/material";
 import { useNavigate } from "react-router-dom";
-import { useSelector } from "react-redux";
+// import { useSelector } from "react-redux";
 import TextField from "@mui/material/TextField";
 import { Grid } from "@mui/material";
-// import axios from "axios";
+import axios from "axios";
+import config from "../config.json";
 
 const style = {
   position: "absolute",
@@ -22,16 +23,49 @@ const style = {
 };
 
 export default function UpdateModal() {
-  const users = useSelector((state) => state.users.users);
-  const user = users.filter((el) => el._id === localStorage.getItem("id"))[0];
-  console.log("user", user);
-
   let navigate = useNavigate();
+  const [isUpdate, setIsUpdate] = useState(false);
   const [open, setOpen] = useState(true);
+  const [resError, setResError] = useState("");
+  const [body, setFormData] = useState({
+    name: "",
+    img: null,
+    password: "",
+  });
+  //   const users = useSelector((state) => state.users.users);
+  //   const user = users.filter((el) => el._id === localStorage.getItem("id"))[0];
+  //   console.log("user", user);
 
   //   const handleOpen = () => {
   //     setOpen(true);
   //   };
+
+  const handleChange = (e) => {
+    setFormData({
+      ...body,
+      [e.target.name]:
+        e.target.name === "img" ? e.target.files[0] : e.target.value,
+    });
+  };
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    try {
+      const headers = {
+        headers: {
+          "Content-Type": "multipart/form-data",
+        },
+      };
+      const url = `${config["api-update"]}/${localStorage.getItem("id")}`;
+      const response = await axios.put(url, body, headers);
+      if (response.status === 200) {
+        return setIsUpdate(true);
+      }
+    } catch (error) {
+      console.error("handleSubmit Ошибка:", error);
+      setResError(error.response.data.message);
+    }
+  };
 
   const handleClose = () => {
     setOpen(false);
@@ -45,14 +79,8 @@ export default function UpdateModal() {
         aria-labelledby="parent-modal-title"
         aria-describedby="parent-modal-description"
       >
-        {/* <Box sx={{ ...style, width: 400 }}>
-          <h2 id="parent-modal-title">Имя: {user.name}</h2>
-          <Typography id="parent-modal-title">Пароль: {user.password}</Typography>
-          <Button onClick={handleClose}>Close</Button>
-        </Box> */}
-
         <Box sx={style}>
-          <form onSubmit>
+          <form onSubmit={handleSubmit}>
             <Grid container spacing={2} justifyContent="center">
               <Grid item xs={12}>
                 <Typography variant="h5" align="center">
@@ -60,6 +88,9 @@ export default function UpdateModal() {
                 </Typography>
               </Grid>
 
+              {!isUpdate && (
+                <Typography sx={{ color: "red" }}>{resError}</Typography>
+              )}
               <Grid item xs={12}>
                 <TextField
                   fullWidth
@@ -67,9 +98,8 @@ export default function UpdateModal() {
                   variant="standard"
                   name="name"
                   type="text"
-                  required
-                  value
-                  onChange
+                  value={body.name}
+                  onChange={handleChange}
                 />
               </Grid>
 
@@ -80,9 +110,8 @@ export default function UpdateModal() {
                   variant="standard"
                   type="password"
                   name="password"
-                  required
-                  value
-                  onChange
+                  value={body.password}
+                  onChange={handleChange}
                 />
               </Grid>
 
@@ -93,8 +122,7 @@ export default function UpdateModal() {
                   variant="standard"
                   type="file"
                   name="img"
-                  required
-                  onChange
+                  onChange={handleChange}
                 />
               </Grid>
             </Grid>
@@ -102,13 +130,19 @@ export default function UpdateModal() {
               <Grid sx={{ paddingTop: "5%" }}>
                 <Button
                   variant="contained"
-                  color="warning"
+                  color="error"
                   type="submit"
+                  style={{ marginRight: 198 }}
                   onClick={handleClose}
                 >
                   Close
                 </Button>
-                <Button variant="contained" color="primary" type="submit">
+                <Button
+                  variant="contained"
+                  color="primary"
+                  type="submit"
+                  onClick={(e) => navigate("/people")}
+                >
                   Отправить
                 </Button>
               </Grid>
