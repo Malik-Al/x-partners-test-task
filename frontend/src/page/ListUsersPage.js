@@ -3,6 +3,7 @@ import { useSelector, useDispatch } from "react-redux";
 import { getUser } from "../store/userStore";
 import CardUser from "../component/Card/CardUser";
 import axios from "axios";
+import config from "../config.json";
 import Navbar from "./Navbar";
 
 export default function ListUsersPage() {
@@ -12,7 +13,7 @@ export default function ListUsersPage() {
   useEffect(() => {
     const getUsers = async () => {
       try {
-        const response = await axios.get(`http://localhost:8055/route/people/`);
+        const response = await axios.get(config["api-people"]);
         dispatch(getUser(response.data.data));
       } catch (error) {
         console.error("error", error);
