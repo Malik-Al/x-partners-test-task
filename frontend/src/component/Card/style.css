@@ -1,0 +1,26 @@
+.user-card {
+    width: 15%; /* Ширина карточки */
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    margin: 10px; /* Отступ между карточками */
+    display: inline-block; /* Отображение карточек в строку */
+    vertical-align: top; /* Вертикальное выравнивание по верхнему краю */
+  }
+
+  .user-card img {
+    width: 100%; /* Автоматическое масштабирование изображения по ширине карточки */
+    border-top-left-radius: 8px;
+    border-top-right-radius: 8px;
+  }
+
+  .user-info {
+    padding: 10px;
+  }
+
+  .user-info h3 {
+    margin: 0;
+  }
+
+  .user-info p {
+    margin: 5px 0;
+  }
