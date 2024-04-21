@@ -10,6 +10,8 @@ export const Users = createSlice({
       state.users = data.map((el) => ({
         _id: el._id,
         name: el.name,
+        email: el.email,
+        password: el.password,
         date_birth: el.date_birth,
         img: el.img,
       }));

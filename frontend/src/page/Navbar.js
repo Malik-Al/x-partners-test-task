@@ -6,8 +6,8 @@ import Typography from "@mui/material/Typography";
 import Button from "@mui/material/Button";
 import IconButton from "@mui/material/IconButton";
 import { useNavigate } from "react-router-dom";
-import { useDispatch } from 'react-redux';
-import { clearState } from '../store/userStore';
+import { useDispatch } from "react-redux";
+import { clearState } from "../store/userStore";
 // import MenuIcon from "@mui/icons-material/Menu";
 
 export default function Navbar({ children }) {
@@ -15,7 +15,7 @@ export default function Navbar({ children }) {
   const dispatch = useDispatch();
   const handleClearState = () => {
     dispatch(clearState());
-   
+    localStorage.clear()
   };
   return (
     <Box sx={{ flexGrow: 1, margin: 0 }}>
@@ -31,9 +31,14 @@ export default function Navbar({ children }) {
             {/* <MenuIcon /> */}
           </IconButton>
           <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
-            Список пользователей
+            <Button color="inherit" onClick={(e) => navigate("/account")}>
+              Профиль
+            </Button>
           </Typography>
-          <Button color="inherit" onClick={(e) =>  navigate("/") && handleClearState()}>
+          <Button
+            color="inherit"
+            onClick={(e) => navigate("/") && handleClearState()}
+          >
             Выйти
           </Button>
         </Toolbar>

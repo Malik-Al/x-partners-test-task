@@ -75,12 +75,14 @@ export default function LoginModal({ isModal }) {
         const url = config["api-register"];
         const response = await axios.post(url, body, headers);
         if (response.status === 200)
-          return navigate("/people") && setOpen(false);
+          localStorage.setItem("id", response.data.data.id);
+        return navigate("/people") && setOpen(false);
       } else {
         const url = config["api-login"];
         const response = await axios.post(url, body);
         if (response.status === 200)
-          return navigate("/people") && setOpen(false);
+          localStorage.setItem("id", response.data.data.id);
+        return navigate("/people") && setOpen(false);
       }
     } catch (error) {
       console.error("handleSubmit Ошибка:", error);

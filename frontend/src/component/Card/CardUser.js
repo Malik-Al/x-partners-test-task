@@ -1,13 +1,10 @@
 import * as React from "react";
 import config from "../../config.json";
 import { CardHeader, Avatar, CardContent, Typography } from "@mui/material";
-import { useNavigate } from "react-router-dom";
 import "./style.css";
 
 export default function CardUser({ user }) {
-  let navigate = useNavigate();
-  const { img, name, date_birth } = user;
-
+  const { img, name, date_birth } = user;  
   const filterDate = (dateStr) => {
     const date = new Date(dateStr);
     const year = date.getFullYear();
@@ -16,7 +13,7 @@ export default function CardUser({ user }) {
     return `${year}-${month}-${day}`;
   };
   return (
-    <div class="user-card" onClick={() => navigate('/account')}>
+    <div class="user-card">
       <CardHeader
         avatar={<Avatar src={`${config["base-url"] + img}`} />}
         title={name}

@@ -1,7 +1,9 @@
-import * as React from "react";
+import {useState} from "react";
 import { Box, Button } from "@mui/material";
-import Modal from "@mui/material/Modal";
+import {Modal, Typography} from "@mui/material";
 import { useNavigate } from "react-router-dom";
+import { useSelector } from "react-redux";
+// import axios from "axios";
 
 const style = {
   position: "absolute",
@@ -18,29 +20,33 @@ const style = {
 };
 
 export default function UpdateModal() {
+  const users = useSelector((state) => state.users.users);
+  const user = users.filter(el => el._id === localStorage.getItem('id'))[0];
+  console.log('user', user);
+
   let navigate = useNavigate();
-  const [open, setOpen] = React.useState(true);
+  const [open, setOpen] = useState(true);
+
   //   const handleOpen = () => {
   //     setOpen(true);
   //   };
+
+
   const handleClose = () => {
     setOpen(false);
-    navigate('/people')
+    navigate("/people");
   };
 
   return (
     <div>
       <Modal
         open={open}
-        onClose={handleClose}
         aria-labelledby="parent-modal-title"
         aria-describedby="parent-modal-description"
       >
         <Box sx={{ ...style, width: 400 }}>
-          <h2 id="parent-modal-title">Text in a modal</h2>
-          <p id="parent-modal-description">
-            Duis mollis, est non commodo luctus, nisi erat porttitor ligula.
-          </p>
+          <h2 id="parent-modal-title">Имя: {user.name}</h2>
+          <Typography id="parent-modal-title">Пароль: {user.password}</Typography>
           <Button onClick={handleClose}>Close</Button>
         </Box>
       </Modal>
