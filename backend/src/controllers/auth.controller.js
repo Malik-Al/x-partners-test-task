@@ -42,6 +42,9 @@ class AuthController {
             logger.info(`[SUCCESS] AuthController Register user`);
             res.status(200).json({
                 message: 'success',
+                data: {
+                    id: createAuth.id
+                }
             });
         } catch (error) {
             console.error('[ERROR] AuthController register error', error);
@@ -63,6 +66,9 @@ class AuthController {
             logger.info('[SUCCESS] AuthController login');
             res.status(200).json({
                 message: 'Authorization was successful',
+                data: {
+                    id: login._id
+                }
             });
         } catch (error) {
             console.error('[ERROR] AuthController login error', error);

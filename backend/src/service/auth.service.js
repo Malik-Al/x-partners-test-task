@@ -29,7 +29,10 @@ class AuthService {
             if (!create._id) {
                 return false;
             }
-            return true;
+            return {
+                id: create._id,
+                status: true
+            };
         } catch (error) {
             console.error('[ERROR] AuthService registerService error', error);
             throw error;
