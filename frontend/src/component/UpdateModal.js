@@ -128,7 +128,7 @@ export default function UpdateModal() {
                   variant="contained"
                   color="error"
                   type="submit"
-                  style={{ marginRight: 198 }}
+                  style={{ marginRight: 179 }}
                   onClick={handleClose}
                 >
                   Закрыть
