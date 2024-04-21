@@ -31,7 +31,7 @@ npm run start
 ## base_url: http://localhost:8055
 
 # register = base_url/route/sing-up 
-# Request
+- Request
 - POST form-data
 - field: 
     - name
@@ -43,14 +43,14 @@ npm run start
 
 
 # login = base_url/route/sing-in
-# Request
+- Request
 - POST body
 - field: 
     - email
     - password
 
 # update = base_url/route/account/id
-# Request
+- Request
 - PUT form-data
 - field: 
     - name
@@ -58,7 +58,7 @@ npm run start
     - password
 
 # list user = base_url/route/people
-# Request
+- Request
 - GET
 
 ## Contact
