@@ -15,7 +15,7 @@ export default function CardUser({ user }) {
   return (
     <div class="user-card">
       <CardHeader
-        avatar={<Avatar src={`${config["base-url"] + img}`} />}
+        avatar={<Avatar src={`${config.api.base + img}`} />}
       />
       <CardContent>
       <Typography variant="body2" color="textSecondary" component="p">

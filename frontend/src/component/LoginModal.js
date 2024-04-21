@@ -82,14 +82,13 @@ export default function LoginModal({ isModal }) {
         },
       };
       if (isAuth) {
-        const url = config["api-register"];
+        const url = config.api.register;
         const response = await axios.post(url, body, headers);
         if (response.status === 200)
           localStorage.setItem("id", response.data.data.id);
         return navigate("/people") && setOpen(false);
       } else {
-        const url = config["api-login"];
-        console.log("body", body);
+        const url = config.api.login;
         const response = await axios.post(url, body);
         if (response.status === 200)
           localStorage.setItem("id", response.data.data.id);

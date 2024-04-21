@@ -1,7 +1,10 @@
 {
-    "base-url": "http://localhost:8055/",
-    "api-register": "http://localhost:8055/route/sing-up",
-    "api-login": "http://localhost:8055/route/sing-in",
-    "api-people": "http://localhost:8055/route/people/",
-    "api-update": "http://localhost:8055/route/account"
+    "api": {
+        "base": "http://localhost:8055/",
+        "register": "http://localhost:8055/route/sing-up",
+        "login": "http://localhost:8055/route/sing-in",
+        "people": "http://localhost:8055/route/people",
+        "update": "http://localhost:8055/route/account"
+    }
+
 }

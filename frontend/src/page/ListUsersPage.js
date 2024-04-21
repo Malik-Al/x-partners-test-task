@@ -13,7 +13,7 @@ export default function ListUsersPage() {
   useEffect(() => {
     const getUsers = async () => {
       try {
-        const response = await axios.get(config["api-people"]);
+        const response = await axios.get(config.api.people);
         dispatch(getUser(response.data.data));
       } catch (error) {
         console.error("error", error);

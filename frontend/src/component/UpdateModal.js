@@ -67,7 +67,7 @@ export default function UpdateModal() {
           "Content-Type": "multipart/form-data",
         },
       };
-      const url = `${config["api-update"]}/${localStorage.getItem("id")}`;
+      const url = `${config.api.update}/${localStorage.getItem("id")}`;
       const response = await axios.put(url, body, headers);
       console.log("response", response);
 
