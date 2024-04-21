@@ -4,6 +4,7 @@ import { getUser } from "../store/userStore";
 import { Grid } from "@mui/material";
 import ItemUser from "../component/ItemUser";
 import axios from "axios";
+import Navbar from "./Navbar";
 
 export default function ListUsersPage() {
   const dispatch = useDispatch();
@@ -24,12 +25,14 @@ export default function ListUsersPage() {
   }, [dispatch]);
 
   return (
-    <div style={{ padding: 0, margin: 0}}>
+    <Navbar>
+      <div style={{ padding: 0, margin: 0 }}>
         {users.map((user) => (
-            <Grid container spacing={2} style={{padding: 10, width: '50%'}}>
-              <ItemUser key={user._id} user={user} />
-            </Grid>
+          <Grid container spacing={2} style={{ padding: 10, width: "50%" }}>
+            <ItemUser key={user._id} user={user} />
+          </Grid>
         ))}
-    </div>
+      </div>
+    </Navbar>
   );
 }
