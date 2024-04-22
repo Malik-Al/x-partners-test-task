@@ -1,18 +1,22 @@
 # Test project for companies x-partners-test-task backend
 
 General information
-
+## Backend
 - Version nodejs v18.14.2
 - The configuration is located in the msdata/config directory
 - the chronology of static content in the msdata/static directory  
 - Stack Node.js/Express.js/MongoDB
 
+## Frontend
+- Configuration api backend src/config.json
+- Stack React.js/Redux-toolkit/Mui
+
+
+## Usage Backend
+
 ## Installation
-
-1. Clone the repository.
-2. Run `npm install` to install dependencies.
-
-## Usage
+- go to the folder cd ./backend
+- Run `npm install` to install dependencies.
 
 - Run development
 ``` 
@@ -60,6 +64,18 @@ npm run start
 # list user = base_url/route/people
 - Request
 - GET
+
+## Usage Frontend
+- go to the folder cd ./frontend
+
+## Installing packages
+### `npm i`
+
+## Project launch
+### `npm start`
+
+Runs the app in the development mode.\
+Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
 
 ## Contact
 For questions, contact me at malikimenov@gmail.com
